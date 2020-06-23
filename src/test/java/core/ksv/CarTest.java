@@ -1,12 +1,18 @@
 package core.ksv;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class CarTest {
     private static final double DELTA = 0.001;
-    private final Car car = init();
-    
+    private Car car;
+
+    @Before
+    public void setUp() throws Exception {
+        car = init();
+    }
+
     private Car init() {
         var door1 = new CarDoor();
         var door2 = new CarDoor();
