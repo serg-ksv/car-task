@@ -83,6 +83,11 @@ public class Car {
     }
 
     public double setCurrentSpeed(double newSpeed) {
+        double currentMaxSpeed = getCurrentMaxSpeed();
+        if (newSpeed > currentMaxSpeed || newSpeed < 0) {
+            throw new IllegalArgumentException("Can't set speed greater than max speed: "
+                    + currentMaxSpeed + " or less than 0!");
+        }
         currentSpeed = newSpeed;
         return currentSpeed;
     }
@@ -125,7 +130,7 @@ public class Car {
 
     public CarWheel[] addWheels(int numberOfWheels) {
         if (numberOfWheels <= 0) {
-            return wheels;
+            throw new IllegalArgumentException("Number of wheels must be positive!");
         }
         int newLength = numberOfWheels;
         CarWheel[] newWheels = new CarWheel[newLength];
