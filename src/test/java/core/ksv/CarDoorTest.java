@@ -1,10 +1,16 @@
 package core.ksv;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class CarDoorTest {
-    private final CarDoor carDoor = new CarDoor();
+    private CarDoor carDoor;
+
+    @Before
+    public void setUp() {
+        carDoor = new CarDoor();
+    }
 
     @Test
     public void isDoorOpenOrCloseTest() {
