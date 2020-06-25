@@ -1,7 +1,21 @@
-package core.ksv;
+package core.ksv.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "car_door")
 public class CarDoor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "is_door_open")
     private boolean isDoorOpen;
+    @Column(name = "is_window_open")
     private boolean isWindowOpen;
 
     public boolean openDoor() {
