@@ -1,9 +1,23 @@
-package core.ksv;
+package core.ksv.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "car")
 public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private final LocalDate manufactureDate;
     private String engineType;
     private double newCarMaxSpeed;
@@ -11,7 +25,19 @@ public class Car {
     private int capacity;
     private int currentNumberOfPassengers;
     private double currentSpeed;
+    @OneToMany
+    @JoinTable(name = "car_car_wheel",
+            joinColumns = @JoinColumn(name = "car_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_wheel_id")
+    )
+    @OrderColumn(name = "car_wheel_index")
     private CarWheel[] wheels;
+    @OneToMany
+    @JoinTable(name = "car_car_door",
+            joinColumns = @JoinColumn(name = "car_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_door_id")
+    )
+    @OrderColumn(name = "car_door_index")
     private CarDoor[] doors;
 
     public Car() {

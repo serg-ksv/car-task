@@ -1,5 +1,8 @@
 package core.ksv;
 
+import core.ksv.model.Car;
+import core.ksv.model.CarDoor;
+import core.ksv.model.CarWheel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
