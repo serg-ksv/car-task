@@ -1,21 +1,27 @@
 package core.ksv.service.impl;
 
 import core.ksv.dao.CarDao;
-import core.ksv.dao.impl.CarDaoImpl;
-import core.ksv.lib.Inject;
-import core.ksv.lib.Service;
 import core.ksv.model.Car;
 import core.ksv.service.CarService;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CarServiceImpl implements CarService {
-    @Inject
-    private final CarDao carDao = new CarDaoImpl();
+    private final CarDao carDao;
+
+    public CarServiceImpl(CarDao carDao) {
+        this.carDao = carDao;
+    }
 
     @Override
     public Car add(Car car) {
         return carDao.add(car);
+    }
+
+    @Override
+    public Car getById(Long id) {
+        return carDao.getById(id, Car.class);
     }
 
     @Override

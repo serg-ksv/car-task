@@ -20,6 +20,14 @@ public class CarWheel {
         wheelCondition = 1.0;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public double changeTire() {
         return wheelCondition = 1.0;
     }
@@ -33,6 +41,10 @@ public class CarWheel {
 
     public double getWheelCondition() {
         return wheelCondition;
+    }
+
+    public void setWheelCondition(double wheelCondition) {
+        this.wheelCondition = wheelCondition;
     }
 
     @Override

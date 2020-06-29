@@ -1,9 +1,13 @@
 package core.ksv.dao.impl;
 
 import core.ksv.dao.CarWheelDao;
-import core.ksv.lib.Dao;
 import core.ksv.model.CarWheel;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class CarWheelDaoImpl extends GenericDaoImpl<CarWheel> implements CarWheelDao {
+    public CarWheelDaoImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
 }
