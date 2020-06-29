@@ -20,12 +20,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     public T getById(Long id, Class<T> type) {
         try (var session = sessionFactory.openSession()) {
-            var criteriaBuilder = session.getCriteriaBuilder();
-            var query = criteriaBuilder.createQuery(type);
-            var root = query.from(type);
-            var predicate = criteriaBuilder.equal(root.get("id"), id);
-            query.select(root).where(predicate);
-            return session.createQuery(query).uniqueResult();
+            return session.get(type, id);
         } catch (Exception e) {
             throw new DataProcessingException("Can't retrieve element", e);
         }
