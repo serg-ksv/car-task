@@ -7,10 +7,10 @@ import core.ksv.service.CarDoorService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -36,8 +36,8 @@ public class CarDoorController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/car-door")
-    public CarDoorResponseDto getById(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public CarDoorResponseDto getById(@PathVariable Long id) {
         var carDoor = carDoorService.getById(id);
         return carDoorMapper.getDtoFromCarDoor(carDoor);
     }
