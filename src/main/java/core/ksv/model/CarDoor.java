@@ -18,6 +18,22 @@ public class CarDoor {
     @Column(name = "is_window_open")
     private boolean isWindowOpen;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDoorOpen(boolean doorOpen) {
+        isDoorOpen = doorOpen;
+    }
+
+    public void setWindowOpen(boolean windowOpen) {
+        isWindowOpen = windowOpen;
+    }
+
     public boolean openDoor() {
         return isDoorOpen = true;
     }

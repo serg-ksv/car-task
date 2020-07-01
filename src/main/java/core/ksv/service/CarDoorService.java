@@ -6,6 +6,8 @@ import java.util.List;
 public interface CarDoorService {
     CarDoor add(CarDoor carDoor);
 
+    CarDoor getById(Long id);
+
     List<CarDoor> getAll();
 
     CarDoor update(CarDoor carDoor);

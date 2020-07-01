@@ -2,18 +2,32 @@ package core.ksv.dao.impl;
 
 import core.ksv.dao.GenericDao;
 import core.ksv.exception.DataProcessingException;
-import core.ksv.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
+    private final SessionFactory sessionFactory;
+
+    public GenericDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     public T add(T element) {
         return manipulateData(element, "create");
     }
 
+    public T getById(Long id, Class<T> type) {
+        try (var session = sessionFactory.openSession()) {
+            return session.get(type, id);
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't retrieve element", e);
+        }
+    }
+
     public List<T> getAll(Class<T> type) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try (var session = sessionFactory.openSession()) {
             var criteriaBuilder = session.getCriteriaBuilder();
             var query = criteriaBuilder.createQuery(type);
             query.from(type);
@@ -35,7 +49,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             switch (action) {
                 case "create":

@@ -6,6 +6,8 @@ import java.util.List;
 public interface CarWheelService {
     CarWheel add(CarWheel carWheel);
 
+    CarWheel getById(Long id);
+
     List<CarWheel> getAll();
 
     CarWheel update(CarWheel carWheel);
